@@ -1,0 +1,59 @@
+#!/bin/bash
+bk_dir=~/Desktop/KORE_BK
+link=example.com #link to btctalk release/post
+clear
+echo "  _  __   ___    ____    _____   _       _   _   "
+echo " | |/ /  / _ \  |  _ \  | ____| | |__   (_) | |_ "
+echo " | ' /  | | | | | |_) | |  _|   | '_ \  | | | __|"
+echo " | . \  | |_| | |  _ <  | |___  | |_) | | | | |_ "
+echo " |_|\_\  \___/  |_| \_\ |_____| |_.__/  |_|  \__|"
+echo "                                                 "
+echo ""
+echo "Please have a LOCKED KORE wallet running when you start this script!!!!"
+echo ""
+echo ""
+echo ""
+echo "Temporary Cycling script by TheMatrix101"
+echo ""
+if command -v xdotool >/dev/null 2>&1
+	then
+		>/dev/null 2>&1
+	else
+		echo You have not correctly configured your system, please follow the instructions here ${link} and run the script after you complete setup and rerun this script.
+		echo ""
+		echo "Error code 1: xdotool not installed!, please install xdotool to continue."
+		echo 'To fix please enter "sudo apt-get install xdotool -y" (without quotation marks)'
+		exit
+fi
+if [ -d $bk_dir ]
+	then
+		echo "Please enter the password to unlock your wallet for staking, If you input the incorrect password please CTRL+C and restart this script"
+		echo "NOTE: for security reasons you will not be able to see the password as you put it in (this stops others from looking over your shoulder at it)
+		read -s KOREPw
+		while true
+		do
+			xdotool  search --name "kore - wallet" windowactivate
+			sleep 2
+			xdotool mousemove 162 11 click 1 &
+			sleep 1
+			xdotool mousemove 172 86 click 1 &
+			sleep 1
+			xdotool type ${KOREPw}
+			xdotool key Return
+			sleep 30
+			killall kore-qt 2>&1 >/dev/null
+			sleep 10
+			#clear all inside KORE Folder ~/.kore/
+			rm -rf ~/.kore/
+			#port over good backup
+			cp -r ~/Desktop/KORE_BK/. ~/.kore/
+			#start KORE again
+			gnome-terminal -e './pt2.sh'
+			#set sleep to 30 min on production
+			sleep 15m
+		done
+	else
+		echo You have not correctly configured your system, please follow the instructions here ${link} and run the script after you complete setup and rerun this script.
+		echo ""
+		echo Error code 2: ${bk_dir} not configured
+fi
