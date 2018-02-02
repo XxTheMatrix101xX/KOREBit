@@ -4,7 +4,7 @@ bk_dir=~/Desktop/KORE_BK/
 #KORE active Directory
 kore_dir=~/.kore/
 #Time before wallet restarts
-uptime=3hr
+uptime=3h
 #Time to wait before unlocking wallet after restart
 init_wait=15m
 link="https://bitcointalk.org/index.php?topic=2096416.msg29421810#msg29421810" #link to btctalk release/post
