@@ -7,7 +7,7 @@ kore_dir=~/.kore/
 uptime=3hr
 #Time to wait before unlocking wallet after restart
 init_wait=15m
-link=example.com #link to btctalk release/post
+link="https://bitcointalk.org/index.php?topic=2096416.msg29421810#msg29421810" #link to btctalk release/post
 clear
 echo "  _  __   ___    ____    _____   _       _   _   "
 echo " | |/ /  / _ \  |  _ \  | ____| | |__   (_) | |_ "
